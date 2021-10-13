@@ -1,13 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deactivate = exports.activate = exports.notificationFun = void 0;
+exports.deactivate = exports.activate = exports.showNotificationAlert = void 0;
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
 let activeJob = null;
-function notificationFun(message, showExcercisePage, keepItRunningAlways) {
-    //console.log('called');
-    vscode.window.showInformationMessage(message + ` 🙂`, {
+function showNotificationAlert(message, showExcercisePage, keepItRunningAlways) {
+    vscode.window.showInformationMessage(message + ``, {
         modal: true,
     });
     if (showExcercisePage) {
@@ -19,7 +18,7 @@ function notificationFun(message, showExcercisePage, keepItRunningAlways) {
         clearInterval(activeJob);
     }
 }
-exports.notificationFun = notificationFun;
+exports.showNotificationAlert = showNotificationAlert;
 function getWebviewContent() {
     return `<!DOCTYPE html>
 <html lang="en">
@@ -48,16 +47,17 @@ function activate(context) {
     console.log(notificationMessage + keepItRunningAlways + breakDuration + showExcercisePage);
     console.log("values " + keepItRunningAlwaysBoolValue + " " + showExcercisePageBoolValue);
     if (isNaN(Number(breakDuration))) {
-        breakDuration = `1`;
+        breakDuration = `20`;
     }
-    activeJob = setInterval(notificationFun.bind(null, notificationMessage, showExcercisePageBoolValue, keepItRunningAlwaysBoolValue), Number(breakDuration) * 1000);
+    let breakDurationInMillis = (Number(breakDuration) * 60000);
+    activeJob = setInterval(showNotificationAlert.bind(null, notificationMessage, showExcercisePageBoolValue, keepItRunningAlwaysBoolValue), Number(breakDurationInMillis));
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with registerCommand
     // The commandId parameter must match the command field in package.json
     let disposable = vscode.commands.registerCommand('eyecare.helloWorld', () => {
         // The code you place here will be executed every time your command is executed
         // Display a message box to the user
-        vscode.window.showInformationMessage('Hello World from EyeCare by Anup!');
+        vscode.window.showInformationMessage('Default settings for extension Eye Care has been enabled!');
     });
     context.subscriptions.push(disposable);
 }

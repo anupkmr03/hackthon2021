@@ -4,10 +4,12 @@ import * as vscode from 'vscode';
 
 let activeJob:any = null;
 
-export function notificationFun(message:string, showExcercisePage:boolean, keepItRunningAlways: boolean) {
-	    //console.log('called');
+export function showNotificationAlert(
+	 message:string,
+	 showExcercisePage:boolean,
+	 keepItRunningAlways: boolean) {
 
-	  	vscode.window.showInformationMessage(message+` 🙂`, {
+	  	vscode.window.showInformationMessage(message+``, {
                 modal: true, 
         });
 
@@ -18,14 +20,13 @@ export function notificationFun(message:string, showExcercisePage:boolean, keepI
 					vscode.ViewColumn.One,
 					{}
 				);
-
-				// And set its HTML content
-				panel.webview.html = getWebviewContent();
+			// And set its HTML content
+			panel.webview.html = getWebviewContent();
 	   }
+
 	   if(!keepItRunningAlways){
 			clearInterval(activeJob);
 	   }
-    
 }
 
 function getWebviewContent() {
@@ -61,20 +62,23 @@ export function activate(context: vscode.ExtensionContext) {
 	console.log("values "+keepItRunningAlwaysBoolValue+" "+showExcercisePageBoolValue);
 
 	if(isNaN(Number(breakDuration))){
-		breakDuration = `1`;
+		breakDuration = `20`;
 	}
-	activeJob = setInterval(notificationFun.bind(null, notificationMessage,
-		 showExcercisePageBoolValue, keepItRunningAlwaysBoolValue), Number(breakDuration)*1000*60);  
+	
+	let breakDurationInMillis:number = (Number(breakDuration)*60000);
+	
+	activeJob = setInterval(showNotificationAlert.bind(null, notificationMessage,
+		 showExcercisePageBoolValue, keepItRunningAlwaysBoolValue), Number(breakDurationInMillis));  
+
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
 	let disposable = vscode.commands.registerCommand('eyecare.helloWorld', () => {
 		// The code you place here will be executed every time your command is executed
 		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from EyeCare by Anup!');
+		vscode.window.showInformationMessage('Default settings for extension Eye Care has been enabled!');
 	});
 	context.subscriptions.push(disposable);
-
 }
 
 // this method is called when your extension is deactivated
