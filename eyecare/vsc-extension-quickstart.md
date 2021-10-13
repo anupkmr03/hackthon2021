@@ -1,5 +1,5 @@
 # Welcome to your VS Code Extension
-
+This is a sample quick start guide
 ## What's in the folder
 
 * This folder contains all of the files necessary for your extension.

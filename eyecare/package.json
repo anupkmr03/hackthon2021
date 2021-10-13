@@ -1,8 +1,10 @@
 {
   "name": "eyecare",
   "displayName": "EyeCare",
+  "publisher": "anupkumar",
   "description": "A simple vscode extension!",
-  "version": "0.0.1",
+  "icon": "img/extensionLogo.png",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.46.0"
   },
@@ -10,7 +12,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:eyecare.helloWorld"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -26,17 +28,38 @@
         "eyeCare.keepItRunningAlways": {
           "type": "boolean",
           "default": true,
-          "description": "Keep the extension running in backgroud"
+          "description": "Keep the extension running in backgroud (Applies on restart of VS Code)"
         },
-         "eyeCare.showExcercisePage": {
-          "type": "boolean",
-          "default": true,
-          "description": "Show excercise page"
+         "eyeCare.breakDuration": {
+          "type": "string",
+          "default": "20",
+          "description": "Default time in minutes to take break (Applies on restart of VS Code)."
+        },
+        "eyeCare.notificationAlert": {
+            "type": "boolean",
+            "default": true,
+            "description": "Play an sound when timer is done (Applies on restart of VS Code)."
         },
         "eyeCare.notificationMessage": {
           "type": "string",
           "default": "Take a min to relax your eyes",
-          "description": "Show excercise page"
+          "description": "Show a text pop-up when timer is done (Applies on restart of VS Code)"
+        }, 
+          "eyeCare.notificationMessageSound": {
+          "type": "string",
+          "default": "Bell",
+          "description": "Change notification sound (Currently not available).",
+          "enum": [
+              "Chime",
+              "Bell",
+              "Outlook",
+              "Teams"
+          ]
+      }, 
+      "eyeCare.showExcercisePage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show excercise page (Applies on restart of VS Code)"
         }
       }
     }
