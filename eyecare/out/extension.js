@@ -104,6 +104,7 @@ function getWebviewContent() {
 <body>
 <!-- partial:index.partial.html -->
 <div id="app"></div>
+<h1> Please blink your eyes for 20 Seconds</h1>
 <!-- partial -->
   <script type="text/javascript">
       // Credit: Mateusz Rybczonec
