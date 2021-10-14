@@ -15,14 +15,15 @@
     "Other"
   ],
   "activationEvents": [
-    "*"
+    "*",
+    "onCommand:eyecare.refreshSettings"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "eyecare.helloWorld",
-        "title": "Hello World"
+        "command": "eyecare.refreshSettings",
+        "title": "Refresh Configuration"
       }
     ], 
     "configuration": {
@@ -31,18 +32,18 @@
         "eyeCare.keepItRunningAlways": {
           "type": "boolean",
           "default": true,
-          "description": "Keep the extension running in backgroud (Applies on restart of VS Code)"
+          "description": "Keep me reminding(Applies on restart of VS Code)"
         },
         
         "eyeCare.breakDuration": {
           "type": "string",
           "default": "20",
-          "description": "Default time in minutes to take break (Applies on restart of VS Code)."
+          "description": "Default time in minutes(Applies on restart of VS Code)."
         },
 
         "eyeCare.notificationMessage": {
           "type": "string",
-          "default": "Take a min to relax your eyes",
+          "default": "Take a break to blink!",
           "description": "Show a text pop-up when timer is done (Applies on restart of VS Code)"
         },
 
@@ -52,12 +53,126 @@
           "description": "Show excercise page (Applies on restart of VS Code)"
         },
 
+        "eyeCare.notificationActiveHoursStart": {
+          "type": "string",
+          "default": "00:00",
+          "description": "Select Active hours [Start] (Applies on restart of VS Code)",
+          "enum": [
+              "00:00",
+              "00:30",
+              "01:00",
+              "01:30",
+              "02:00",
+              "02:30",
+              "03:00",
+              "03:30",
+              "04:00",
+              "04:30",
+              "05:00",
+              "05:30",
+              "06:00",
+              "06:30",
+              "07:00",
+              "07:30",
+              "08:00",
+              "08:30",
+              "09:00",
+              "09:30",
+              "10:00",
+              "10:30",
+              "11:00",
+              "11:30",
+              "12:00",
+              "12:30",
+              "13:00",
+              "13:30",
+              "14:00",
+              "14:30",
+              "15:00",
+              "15:30",
+              "16:00",
+              "16:30",
+              "17:00",
+              "17:30",
+              "18:00",
+              "18:30",
+              "19:00",
+              "19:30",
+              "20:00",
+              "20:30",
+              "21:00",
+              "21:30",
+              "22:00",
+              "22:30",
+              "23:00",
+              "23:30",
+              "24:00"
+          ]
+        },
+
+        "eyeCare.notificationActiveHoursEnd": {
+          "type": "string",
+          "default": "00:00",
+          "description": "Select Active hours [End] (Applies on restart of VS Code)",
+          "enum": [
+              "00:00",
+              "00:30",
+              "01:00",
+              "01:30",
+              "02:00",
+              "02:30",
+              "03:00",
+              "03:30",
+              "04:00",
+              "04:30",
+              "05:00",
+              "05:30",
+              "06:00",
+              "06:30",
+              "07:00",
+              "07:30",
+              "08:00",
+              "08:30",
+              "09:00",
+              "09:30",
+              "10:00",
+              "10:30",
+              "11:00",
+              "11:30",
+              "12:00",
+              "12:30",
+              "13:00",
+              "13:30",
+              "14:00",
+              "14:30",
+              "15:00",
+              "15:30",
+              "16:00",
+              "16:30",
+              "17:00",
+              "17:30",
+              "18:00",
+              "18:30",
+              "19:00",
+              "19:30",
+              "20:00",
+              "20:30",
+              "21:00",
+              "21:30",
+              "22:00",
+              "22:30",
+              "23:00",
+              "23:30",
+              "24:00"
+          ]
+        },
+
         "eyeCare.notificationAlert": {
             "type": "boolean",
             "default": false,
             "description": "Play an sound when timer is done (Currently not available)"
         },
- 
+
         "eyeCare.notificationMessageSound": {
           "type": "string",
           "default": "Bell",
@@ -65,8 +180,7 @@
           "enum": [
               "Chime",
               "Bell",
-              "Outlook",
-              "Teams"
+              "Flute"
           ]
         }
       }
