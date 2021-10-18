@@ -2,12 +2,12 @@
   "name": "eyecare",
   "displayName": "EyeCare",
   "publisher": "anupkumar",
-  "description": "A simple vscode extension!",
+  "description": "Remember to blink! Take an Eye Care break.",
   "icon": "img/extensionLogo.png",
   "repository": {
     "url": "https://github.com/anupkmr03/hackthon2021"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "engines": {
     "vscode": "^1.46.0"
   },

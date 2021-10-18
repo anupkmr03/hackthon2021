@@ -82,11 +82,11 @@ function getWebviewContent() {
     }
 
     .base-timer__path-remaining.orange {
-      color: orange;
+      color: rgb(140, 199, 81);
     }
 
     .base-timer__path-remaining.red {
-      color: rgb(65, 184, 131);
+      color: rgb(140, 199, 81);
     }
 
     .base-timer__label {
@@ -104,7 +104,7 @@ function getWebviewContent() {
 <body>
 <!-- partial:index.partial.html -->
 <div id="app"></div>
-<h1> Please blink your eyes for 20 Seconds</h1>
+<h1 style="font-family:Trebuchet MS;text-align:center;"> Please blink your eyes for 20 Seconds</h1>
 <!-- partial -->
   <script type="text/javascript">
       // Credit: Mateusz Rybczonec
@@ -151,7 +151,7 @@ function getWebviewContent() {
             ></path>
           </g>
         </svg>
-        <span id="base-timer-label" class="base-timer__label">\${formatTime(
+        <span id="base-timer-label" class="base-timer__label" style="font-family:Trebuchet MS;text-align:center;">\${formatTime(
           timeLeft
         )}</span>
       </div>
